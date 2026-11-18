@@ -88,11 +88,12 @@
 
   /* Videos con vista previa */
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 32px; margin-bottom: 48px; }
+  .grid4v { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
   .card h3 { margin: 14px 0 2px; }
   .card .meta { color: var(--blue); font-weight: 500; font-size: 15px; margin-bottom: 8px; }
   .card p { color: var(--muted); font-size: 16px; }
   .video { position: relative; width: 100%; padding-top: 56.25%; background: #111; }
-  .video > *, .reel > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .facade { cursor: pointer; padding: 0; color: #fff; font: 700 16px var(--body); text-align: left; background: #111 center / cover no-repeat; display: flex; align-items: flex-end; }
   .facade::before { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(0,0,0,.8)); }
   .facade .ft { position: relative; padding: 14px 16px; max-width: 80%; }
@@ -102,8 +103,9 @@
   .reels-head { margin-bottom: 18px; }
   .reels-head p { color: var(--muted); margin: 4px 0 0; }
   .reels { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x proximity; }
-  .reel { position: relative; flex: 0 0 280px; height: 500px; scroll-snap-align: start; background: #111; }
-  .reel .facade { align-items: flex-end; background: linear-gradient(160deg, #1f5a82, #000); }
+  .reel { flex: 0 0 325px; scroll-snap-align: start; }
+  .reel blockquote { margin: 0 !important; min-width: 325px; max-width: 325px; }
+  .reel .tt-link { display: block; margin-top: 8px; font-size: 15px; }
 
   /* Experiencia */
   .jobs { background: var(--tint); }
@@ -210,6 +212,7 @@
       <button class="tab" data-f="todo" aria-pressed="true">Todo</button>
       <button class="tab" data-f="podcast" aria-pressed="false">Podcasts</button>
       <button class="tab" data-f="documental" aria-pressed="false">Documental</button>
+      <button class="tab" data-f="videos" aria-pressed="false">Más videos</button>
       <button class="tab" data-f="reels" aria-pressed="false">Reels</button>
     </div>
 
@@ -236,16 +239,44 @@
       </article>
     </div>
 
+    <div class="grid grid4v">
+      <article class="card" data-cat="videos">
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/Es-FhfVDSWs?autoplay=1" data-title="Video 1" data-thumb="https://i.ytimg.com/vi/Es-FhfVDSWs/hqdefault.jpg" aria-label="Reproducir video 1"><span class="play"></span></button></div>
+        <h3>Video 1</h3>
+        <div class="meta">Producción audiovisual</div>
+      </article>
+      <article class="card" data-cat="videos">
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/kxMvlKuRwBk?autoplay=1" data-title="Video 2" data-thumb="https://i.ytimg.com/vi/kxMvlKuRwBk/hqdefault.jpg" aria-label="Reproducir video 2"><span class="play"></span></button></div>
+        <h3>Video 2</h3>
+        <div class="meta">Producción audiovisual</div>
+      </article>
+      <article class="card" data-cat="videos">
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/qzL19aowgDU?autoplay=1&start=230" data-title="Video 3" data-thumb="https://i.ytimg.com/vi/qzL19aowgDU/hqdefault.jpg" aria-label="Reproducir video 3"><span class="play"></span></button></div>
+        <h3>Video 3</h3>
+        <div class="meta">Producción audiovisual</div>
+      </article>
+      <article class="card" data-cat="videos">
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/q1SBB3aheRg?autoplay=1" data-title="Video 4" data-thumb="https://i.ytimg.com/vi/q1SBB3aheRg/hqdefault.jpg" aria-label="Reproducir video 4"><span class="play"></span></button></div>
+        <h3>Video 4</h3>
+        <div class="meta">Producción audiovisual</div>
+      </article>
+    </div>
+
     <div data-cat="reels">
       <div class="reels-head">
         <h3>Reels para Unimania</h3>
         <p>Videos verticales para la tienda oficial de la UASLP: promoción de ropa y productos, y difusión de eventos culturales. Desliza para ver más.</p>
       </div>
       <div class="reels">
-        <div class="reel"><button class="facade" data-src="https://www.tiktok.com/embed/v2/7577545936256224523" data-title="Reel 1 para Unimania" aria-label="Reproducir reel 1"><span class="play"></span><span class="ft">Reel 1</span></button></div>
-        <div class="reel"><button class="facade" data-src="https://www.tiktok.com/embed/v2/7543349863396822278" data-title="Reel 2 para Unimania" aria-label="Reproducir reel 2"><span class="play"></span><span class="ft">Reel 2</span></button></div>
-        <div class="reel"><button class="facade" data-src="https://www.tiktok.com/embed/v2/7546679879157239046" data-title="Reel 3 para Unimania" aria-label="Reproducir reel 3"><span class="play"></span><span class="ft">Reel 3</span></button></div>
-        <div class="reel"><button class="facade" data-src="https://www.tiktok.com/embed/v2/7407887397695802630" data-title="Reel 4 para Unimania" aria-label="Reproducir reel 4"><span class="play"></span><span class="ft">Reel 4</span></button></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7577545936256224523" data-video-id="7577545936256224523"><section><a href="https://www.tiktok.com/@la.uaslp/video/7577545936256224523" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7546679879157239046" data-video-id="7546679879157239046"><section><a href="https://vt.tiktok.com/ZSCcVjmMM/" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7546349743488683271" data-video-id="7546349743488683271"><section><a href="https://www.tiktok.com/@la.uaslp/video/7546349743488683271" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7543349863396822278" data-video-id="7543349863396822278"><section><a href="https://www.tiktok.com/@la.uaslp/video/7543349863396822278" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7528517389835586821" data-video-id="7528517389835586821"><section><a href="https://www.tiktok.com/@la.uaslp/video/7528517389835586821" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7528494590739991813" data-video-id="7528494590739991813"><section><a href="https://www.tiktok.com/@la.uaslp/video/7528494590739991813" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7528172553622375736" data-video-id="7528172553622375736"><section><a href="https://www.tiktok.com/@la.uaslp/video/7528172553622375736" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7483952190260890886" data-video-id="7483952190260890886"><section><a href="https://www.tiktok.com/@la.uaslp/video/7483952190260890886" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7407887397695802630" data-video-id="7407887397695802630"><section><a href="https://vt.tiktok.com/ZSCcVk5nU/" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
       </div>
     </div>
   </div>
@@ -336,6 +367,20 @@
       b.parentNode.replaceChild(f, b);
     });
   });
+
+  // Reels: se carga el script oficial de TikTok al acercarse a la sección
+  var reelsRow = $('.reels'), ttLoaded = false;
+  function loadTikTok() {
+    if (ttLoaded) return; ttLoaded = true;
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.tiktok.com/embed.js';
+    document.body.appendChild(sc);
+  }
+  if (reelsRow && 'IntersectionObserver' in window) {
+    var tio = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { loadTikTok(); tio.disconnect(); }
+    }, { rootMargin: '600px' });
+    tio.observe(reelsRow);
+  } else { loadTikTok(); }
 
   // Filtros de trabajo
   var tabs = $$('.tab'), items = $$('[data-cat]');
