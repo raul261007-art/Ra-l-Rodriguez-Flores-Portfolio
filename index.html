@@ -79,6 +79,8 @@
   .js .wipe { clip-path: inset(0 100% 0 0); }
   .js .wipe.in { clip-path: inset(0); transition: clip-path .8s cubic-bezier(.7,0,.2,1); }
   .about p { font-size: 19px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: center; }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 28px; } .grid4v { grid-template-columns: 1fr !important; } }
 
   /* Filtros */
   .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
@@ -88,7 +90,7 @@
 
   /* Videos con vista previa */
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 32px; margin-bottom: 48px; }
-  .grid4v { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .grid4v { grid-template-columns: repeat(2, 1fr); }
   .card h3 { margin: 14px 0 2px; }
   .card .meta { color: var(--blue); font-weight: 500; font-size: 15px; margin-bottom: 8px; }
   .card p { color: var(--muted); font-size: 16px; }
@@ -103,9 +105,11 @@
   .reels-head { margin-bottom: 18px; }
   .reels-head p { color: var(--muted); margin: 4px 0 0; }
   .reels { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x proximity; }
-  .reel { flex: 0 0 325px; scroll-snap-align: start; }
-  .reel blockquote { margin: 0 !important; min-width: 325px; max-width: 325px; }
-  .reel .tt-link { display: block; margin-top: 8px; font-size: 15px; }
+  .reel { flex: 0 0 240px; scroll-snap-align: start; }
+  .reel .vert { position: relative; width: 100%; padding-top: 177.78%; background: linear-gradient(160deg, #1f5a82, #000); }
+  .reel .vert > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .reel .rt { margin: 10px 0 2px; font-size: 15px; font-weight: 500; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .reel .tt-link { display: block; font-size: 15px; }
 
   /* Experiencia */
   .jobs { background: var(--tint); }
@@ -200,8 +204,13 @@
 <section class="block about">
   <div class="wrap">
     <h2 class="wipe">Sobre mí</h2>
+    <div class="about-grid">
+      <div>
     <p>Soy diseñador gráfico formado en la Universidad Autónoma de San Luis Potosí. Durante más de dos años produje contenido audiovisual para televisión, podcast y redes sociales en la UASLP, y hoy edito video para clientes internacionales.</p>
     <p>He participado en todo el proceso de producción: planeación, grabación, edición y postproducción, con Adobe Premiere Pro y After Effects. Adapto cada pieza al formato y a la plataforma donde se va a publicar.</p>
+      </div>
+      <div class="video"><iframe src="https://www.youtube.com/embed/AiRsoJeDdK0" title="Video de presentación de Raúl Rodríguez Flores" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    </div>
   </div>
 </section>
 
@@ -241,42 +250,46 @@
 
     <div class="grid grid4v">
       <article class="card" data-cat="videos">
-        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/Es-FhfVDSWs?autoplay=1" data-title="Video 1" data-thumb="https://i.ytimg.com/vi/Es-FhfVDSWs/hqdefault.jpg" aria-label="Reproducir video 1"><span class="play"></span></button></div>
-        <h3>Video 1</h3>
-        <div class="meta">Producción audiovisual</div>
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/Es-FhfVDSWs?autoplay=1" data-title="¿Sabes qué es la huella plástica?" data-thumb="https://i.ytimg.com/vi/Es-FhfVDSWs/hqdefault.jpg" aria-label="Reproducir ¿Sabes qué es la huella plástica?"><span class="play"></span></button></div>
+        <h3>¿Sabes qué es la huella plástica?</h3>
+        <div class="meta">Video para la UASLP</div>
+        <p>Video de divulgación sobre la huella plástica y cómo reducirla con hábitos cotidianos.</p>
       </article>
       <article class="card" data-cat="videos">
-        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/kxMvlKuRwBk?autoplay=1" data-title="Video 2" data-thumb="https://i.ytimg.com/vi/kxMvlKuRwBk/hqdefault.jpg" aria-label="Reproducir video 2"><span class="play"></span></button></div>
-        <h3>Video 2</h3>
-        <div class="meta">Producción audiovisual</div>
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/kxMvlKuRwBk?autoplay=1" data-title="¿Por qué nos enferma el aire que respiramos?" data-thumb="https://i.ytimg.com/vi/kxMvlKuRwBk/hqdefault.jpg" aria-label="Reproducir ¿Por qué nos enferma el aire que respiramos?"><span class="play"></span></button></div>
+        <h3>¿Por qué nos enferma el aire que respiramos?</h3>
+        <div class="meta">Video para la UASLP</div>
+        <p>Video sobre la calidad del aire, su efecto en la salud y la necesidad de regulaciones ambientales.</p>
       </article>
       <article class="card" data-cat="videos">
-        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/qzL19aowgDU?autoplay=1&start=230" data-title="Video 3" data-thumb="https://i.ytimg.com/vi/qzL19aowgDU/hqdefault.jpg" aria-label="Reproducir video 3"><span class="play"></span></button></div>
-        <h3>Video 3</h3>
-        <div class="meta">Producción audiovisual</div>
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/qzL19aowgDU?autoplay=1&start=230" data-title="Transforma tu mundo desde el campus Salinas" data-thumb="https://i.ytimg.com/vi/qzL19aowgDU/hqdefault.jpg" aria-label="Reproducir Transforma tu mundo desde el campus Salinas"><span class="play"></span></button></div>
+        <h3>Transforma tu mundo desde el campus Salinas</h3>
+        <div class="meta">Video para la UASLP</div>
+        <p>Presentación del campus Salinas y sus cuatro programas educativos.</p>
       </article>
       <article class="card" data-cat="videos">
-        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/q1SBB3aheRg?autoplay=1" data-title="Video 4" data-thumb="https://i.ytimg.com/vi/q1SBB3aheRg/hqdefault.jpg" aria-label="Reproducir video 4"><span class="play"></span></button></div>
-        <h3>Video 4</h3>
-        <div class="meta">Producción audiovisual</div>
+        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/q1SBB3aheRg?autoplay=1" data-title="Informe de Actividades 2023 · UASLP" data-thumb="https://i.ytimg.com/vi/q1SBB3aheRg/hqdefault.jpg" aria-label="Reproducir Informe de Actividades 2023 · UASLP"><span class="play"></span></button></div>
+        <h3>Informe de Actividades 2023 · UASLP</h3>
+        <div class="meta">Video para la UASLP</div>
+        <p>Video del Cuarto Informe de Actividades del rector de la UASLP ante el Consejo Directivo Universitario.</p>
       </article>
     </div>
 
     <div data-cat="reels">
       <div class="reels-head">
-        <h3>Reels para Unimania</h3>
-        <p>Videos verticales para la tienda oficial de la UASLP: promoción de ropa y productos, y difusión de eventos culturales. Desliza para ver más.</p>
+        <h3>Reels de TikTok</h3>
+        <p>Videos verticales de la cuenta oficial de la UASLP (@la.uaslp), incluidos los de su tienda Unimania: promoción de ropa y productos, y difusión de eventos culturales. Desliza para ver más.</p>
       </div>
       <div class="reels">
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7577545936256224523" data-video-id="7577545936256224523"><section><a href="https://www.tiktok.com/@la.uaslp/video/7577545936256224523" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7546679879157239046" data-video-id="7546679879157239046"><section><a href="https://vt.tiktok.com/ZSCcVjmMM/" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7546349743488683271" data-video-id="7546349743488683271"><section><a href="https://www.tiktok.com/@la.uaslp/video/7546349743488683271" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7543349863396822278" data-video-id="7543349863396822278"><section><a href="https://www.tiktok.com/@la.uaslp/video/7543349863396822278" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7528517389835586821" data-video-id="7528517389835586821"><section><a href="https://www.tiktok.com/@la.uaslp/video/7528517389835586821" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7528494590739991813" data-video-id="7528494590739991813"><section><a href="https://www.tiktok.com/@la.uaslp/video/7528494590739991813" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7528172553622375736" data-video-id="7528172553622375736"><section><a href="https://www.tiktok.com/@la.uaslp/video/7528172553622375736" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7483952190260890886" data-video-id="7483952190260890886"><section><a href="https://www.tiktok.com/@la.uaslp/video/7483952190260890886" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
-        <div class="reel"><blockquote class="tiktok-embed" cite="https://www.tiktok.com/@la.uaslp/video/7407887397695802630" data-video-id="7407887397695802630"><section><a href="https://vt.tiktok.com/ZSCcVk5nU/" target="_blank" rel="noopener">Ver en TikTok</a></section></blockquote></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7577545936256224523"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7577545936256224523?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://www.tiktok.com/@la.uaslp/video/7577545936256224523" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7546679879157239046"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7546679879157239046?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://vt.tiktok.com/ZSCcVjmMM/" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7546349743488683271"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7546349743488683271?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://www.tiktok.com/@la.uaslp/video/7546349743488683271" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7543349863396822278"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7543349863396822278?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://www.tiktok.com/@la.uaslp/video/7543349863396822278" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7528517389835586821"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7528517389835586821?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://www.tiktok.com/@la.uaslp/video/7528517389835586821" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7528494590739991813"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7528494590739991813?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://www.tiktok.com/@la.uaslp/video/7528494590739991813" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7528172553622375736"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7528172553622375736?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://www.tiktok.com/@la.uaslp/video/7528172553622375736" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7483952190260890886"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7483952190260890886?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://www.tiktok.com/@la.uaslp/video/7483952190260890886" target="_blank" rel="noopener">Abrir en TikTok</a></div>
+        <div class="reel" data-url="https://www.tiktok.com/@la.uaslp/video/7407887397695802630"><div class="vert"><button class="facade" data-src="https://www.tiktok.com/player/v1/7407887397695802630?autoplay=1" data-title="Reel de TikTok" aria-label="Reproducir reel"><span class="play"></span></button></div><div class="rt">Reel de @la.uaslp</div><a class="tt-link" href="https://vt.tiktok.com/ZSCcVk5nU/" target="_blank" rel="noopener">Abrir en TikTok</a></div>
       </div>
     </div>
   </div>
@@ -315,7 +328,6 @@
           <li>Diseñé publicaciones y materiales gráficos para redes sociales.</li>
           <li>Edité y actualicé la página oficial de la universidad en WordPress.</li>
         </ul>
-        <div class="video"><button class="facade" data-src="https://www.youtube.com/embed/AiRsoJeDdK0?autoplay=1" data-title="Video de mi trabajo en la UASLP" data-thumb="https://i.ytimg.com/vi/AiRsoJeDdK0/hqdefault.jpg" aria-label="Reproducir video de mi trabajo en la UASLP"><span class="play"></span></button></div>
       </div>
     </details>
 
@@ -368,19 +380,18 @@
     });
   });
 
-  // Reels: se carga el script oficial de TikTok al acercarse a la sección
-  var reelsRow = $('.reels'), ttLoaded = false;
-  function loadTikTok() {
-    if (ttLoaded) return; ttLoaded = true;
-    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.tiktok.com/embed.js';
-    document.body.appendChild(sc);
-  }
-  if (reelsRow && 'IntersectionObserver' in window) {
-    var tio = new IntersectionObserver(function (es) {
-      if (es[0].isIntersecting) { loadTikTok(); tio.disconnect(); }
-    }, { rootMargin: '600px' });
-    tio.observe(reelsRow);
-  } else { loadTikTok(); }
+  // Reels: título y portada desde TikTok, si el navegador lo permite
+  $$('.reel').forEach(function (r) {
+    if (!window.fetch) return;
+    fetch('https://www.tiktok.com/oembed?url=' + encodeURIComponent(r.dataset.url))
+      .then(function (res) { return res.json(); })
+      .then(function (d) {
+        if (d.title) r.querySelector('.rt').textContent = d.title;
+        var f = r.querySelector('.facade');
+        if (d.thumbnail_url && f) f.style.backgroundImage = 'url(' + d.thumbnail_url + ')';
+      })
+      .catch(function () {});
+  });
 
   // Filtros de trabajo
   var tabs = $$('.tab'), items = $$('[data-cat]');
