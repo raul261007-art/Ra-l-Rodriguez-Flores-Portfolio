@@ -79,8 +79,8 @@
   .js .wipe { clip-path: inset(0 100% 0 0); }
   .js .wipe.in { clip-path: inset(0); transition: clip-path .8s cubic-bezier(.7,0,.2,1); }
   .about p { font-size: 19px; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: center; }
-  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 28px; } .grid4v { grid-template-columns: 1fr !important; } }
+  .about .video { max-width: 900px; }
+  @media (max-width: 760px) { .grid4v { grid-template-columns: 1fr !important; } }
 
   /* Filtros */
   .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
@@ -204,13 +204,7 @@
 <section class="block about">
   <div class="wrap">
     <h2 class="wipe">Sobre mí</h2>
-    <div class="about-grid">
-      <div>
-    <p>Soy diseñador gráfico formado en la Universidad Autónoma de San Luis Potosí. Durante más de dos años produje contenido audiovisual para televisión, podcast y redes sociales en la UASLP, y hoy edito video para clientes internacionales.</p>
-    <p>He participado en todo el proceso de producción: planeación, grabación, edición y postproducción, con Adobe Premiere Pro y After Effects. Adapto cada pieza al formato y a la plataforma donde se va a publicar.</p>
-      </div>
-      <div class="video"><iframe src="https://www.youtube.com/embed/AiRsoJeDdK0" title="Video de presentación de Raúl Rodríguez Flores" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
-    </div>
+    <div class="video"><iframe src="https://www.youtube.com/embed/AiRsoJeDdK0" title="Video de presentación de Raúl Rodríguez Flores" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
   </div>
 </section>
 
@@ -420,14 +414,18 @@
   window.addEventListener('resize', update);
   update();
 
-  // Títulos: transición de barrido al entrar
+  // Títulos: transición de barrido al entrar (se observa el contenedor, no el título recortado)
   var heads = $$('.wipe');
+  function reveal(h) { h.classList.add('in'); }
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.6 });
-    heads.forEach(function (h) { io.observe(h); });
-  } else { heads.forEach(function (h) { h.classList.add('in'); }); }
+      es.forEach(function (e) {
+        if (e.isIntersecting) { var h = e.target.querySelector('.wipe'); if (h) reveal(h); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    heads.forEach(function (h) { io.observe(h.parentNode); });
+    setTimeout(function () { heads.forEach(function (h) { if (!h.classList.contains('in')) { var r = h.getBoundingClientRect(); if (r.top < window.innerHeight) reveal(h); } }); }, 1200);
+  } else { heads.forEach(reveal); }
 })();
 </script>
 
